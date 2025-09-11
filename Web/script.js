@@ -123,12 +123,11 @@ class ToDoListApp {
         `).join('');
     }
 
-    generateFileName() {
+    createUnicFileName() {
         let now = new Date();
-        let dateStr = now.toISOString().slice(0, 10).replace(/-/g, ''); // YYYYMMDD
-        let timeStr = now.toTimeString().slice(0, 8).replace(/:/g, ''); // HHMMSS
-        
-        return `ToDoList_${dateStr}_${timeStr}.json`;
+        let date = now.toISOString().slice(0, 10).replace(/-/g, ''); 
+        let time = now.toTimeString().slice(0, 8).replace(/:/g, '');
+        return `ToDoList_${date}_${time}.json`;
     }
 
     saveToFile() {
@@ -137,19 +136,19 @@ class ToDoListApp {
             return;
         }
 
-        let jsonData = JSON.stringify(this.tasks, null, 2);
+        let jsonData = JSON.stringify(this.tasks);
         
-        let fileName = this.generateFileName();
+        let fileName = this.createUnicFileName();
         
-        let dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonData);
+        let blob = new Blob([jsonData], {type: 'application/json;charset=utf-8'});
+
         let link = document.createElement('a');
-        link.href = dataUri;
+        link.href = URL.createObjectURL(blob);;
         link.download = fileName;
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
         
-        alert(`Файл "${fileName}" готов для скачивания! Сохраните его в нужную папку.`);
+        alert(`Файл "${fileName}" сохранён`);
     }
 
     loadFromFile() {
@@ -158,28 +157,20 @@ class ToDoListApp {
 
     selectFile(event) {
         let file = event.target.files[0];
-        if (!file) return;
-
         let reader = new FileReader();
+
         reader.onload = (e) => {
-            try {
-                let data = JSON.parse(e.target.result);
-                
-                if (Array.isArray(data)) {
-                    this.tasks = data;
-                    this.drawList();
-                    alert('Файл успешно загружен!');
-                } else {
-                    throw new Error('Неверный формат данных в файле');
-                }
-            } catch (error) {
-                alert('Ошибка при чтении файла: ' + error.message);
+            let data  = JSON.parse(e.target.result);
+            if (Array.isArray(data)) {
+                this.tasks = data;
+                this.drawList();
+                alert(`Файл ${file.name} загружен`);
+            } else {
+                alert('Неверный формат данных в файле');
             }
-        };
+        }
         
         reader.readAsText(file);
-
-        event.target.value = '';
     }
 }
 
