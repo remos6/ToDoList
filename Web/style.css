@@ -1,0 +1,261 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.mainContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.mainHeader {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.mainHeader h1 {
+    font-size: 28px;
+    color: #22313f;
+    font-weight: 700;
+}
+
+/* Контейнер для кнопок файловых операций */
+.fileControls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.controlButton {
+    padding: 12px 25px;
+    background: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.controlButton:hover {
+    background: #138496;
+    transform: translateY(-2px);
+}
+
+.inputContainer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#newTaskInput {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    font-size: 18px;
+    background: #f8f9fa;
+}
+
+#newTaskInput:focus {
+    border-color: #4e73df;
+    outline: none;
+    background: white;
+}
+
+.addTaskButton {
+    padding: 15px 25px;
+    background: #4e73df;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.addTaskButton:hover {
+    background: rgb(45, 45, 155);
+}
+
+.toggleContainer {
+    margin-bottom: 20px;
+}
+
+.toggleButton {
+    width: 100%;
+    padding: 16px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+    background: #218838;
+}
+
+.arrowIcon {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.arrowIcon.rotated {
+    transform: rotate(180deg);
+}
+
+.listContainer {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.emptyMessage {
+    text-align: center;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.emptyMessage p {
+    color: #6c757d;
+    font-size: 21px;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    background: #2c3e50;
+    color: white;
+    padding: 16px 20px;
+    font-weight: 600;
+    border-radius: 10px 10px 0 0;
+    font-size: 14px;
+    gap: 15px;
+}
+
+.tasksItems {
+    overflow-y: auto;
+    background: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.taskItem {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; 
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background: white;
+    gap: 15px;
+}
+
+.taskItem:last-child {
+    border-bottom: none;
+}
+
+.taskItem.completed {
+    background: #9fc9a1;
+}
+
+.taskText {
+    font-size: 18px;
+    color: #2c3e50;
+    word-break: break-word;
+}
+
+.taskItem.completed .taskText {
+    color: #388e3c;
+    text-decoration: line-through;
+}
+
+.taskStatus {
+    padding: 12px 12px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    max-width: 150px;
+}
+
+.statusCompleted {
+    background: #28a745;
+    color: white;
+}
+
+.statusActive {
+    background: #dc3545;
+    color: white;
+}
+
+.taskActions {
+    display: flex;
+    gap: 12px;
+}
+
+.actionButton {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.statusButton {
+    background: #28a745;
+    color: white;
+}
+
+.statusButton:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.editButton {
+    background: #ffc107;
+    color: white;
+}
+
+.editButton:hover {
+    background: #e0a800;
+    transform: scale(1.05);
+}
+
+.deleteButton {
+    background: #dc3545;
+    color: white;
+}
+
+.deleteButton:hover {
+    background: #bd2130;
+    transform: scale(1.05);
+}

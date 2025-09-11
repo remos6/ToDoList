@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainContainer">
+        <div class="mainHeader">
+            <h1>TO-DO List</h1>
+        </div>
+
+        <div class="inputContainer">
+            <input type="text" id="newTaskInput" placeholder="Введите описание нового дела">
+            <button id="addTaskButton" class="addTaskButton">Добавить</button>
+        </div>
+
+        <div class="toggleContainer">
+            <button id="showListButton" class="toggleButton">
+                <span>Список дел</span>
+                <span class="arrowIcon">▼</span>
+            </button>
+        </div>
+
+        <div id="listContainer" class="listContainer hidden">
+            <div class="fileControls">
+                <button id="saveButton" class="controlButton">Сохранить в файл</button>
+                <button id="loadButton" class="controlButton">Загрузить из файла</button>
+            </div>
+
+            <div id="emptyMessage" class="emptyMessage">
+                <p>Список дел пуст. Добавьте хотя бы одно дело</p>
+            </div>
+
+            <div id="tasksTable" class="tasksTable">
+                <div class="tableHeader">
+                    <div class="columnDescription">Описание дела</div>
+                    <div class="columnStatus">Статус</div>
+                    <div class="columnActions">Действия</div>
+                </div>
+
+                <div id="tasksItems" class="tasksItems">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+    <script src="script.js"></script>
+</body>
+</html>
