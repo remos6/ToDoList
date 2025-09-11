@@ -1,17 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     color: #333;
 }
 
 .mainContainer {
+    width: 100%;
     max-width: 900px;
     margin: 0 auto;
     background: white;
     border-radius: 15px;
     padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .mainHeader {
@@ -25,7 +36,6 @@ body {
     font-weight: 700;
 }
 
-/* Контейнер для кнопок файловых операций */
 .fileControls {
     display: flex;
     gap: 15px;
@@ -57,6 +67,7 @@ body {
     gap: 20px;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 #newTaskInput {
@@ -66,6 +77,7 @@ body {
     border-radius: 12px;
     font-size: 18px;
     background: #f8f9fa;
+    min-width: 200px;
 }
 
 #newTaskInput:focus {
@@ -83,6 +95,7 @@ body {
     cursor: pointer;
     font-size: 18px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .addTaskButton:hover {
@@ -158,14 +171,13 @@ body {
 .tasksItems {
     overflow-y: auto;
     background: white;
-    border-radius: 0 0 10px 10px;
 }
 
 .taskItem {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr; 
     align-items: center;
-    padding: 15px 20px;
+    padding: 22px 30px;
     border-bottom: 1px solid #e0e0e0;
     background: white;
     gap: 15px;
@@ -180,9 +192,10 @@ body {
 }
 
 .taskText {
-    font-size: 18px;
+    font-size: 20px;
     color: #2c3e50;
     word-break: break-word;
+    margin: 0;
 }
 
 .taskItem.completed .taskText {
@@ -212,7 +225,7 @@ body {
 
 .taskActions {
     display: flex;
-    gap: 12px;
+    gap: 20px;
 }
 
 .actionButton {
@@ -222,21 +235,52 @@ body {
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    position: relative;
 }
 
-.statusButton {
+
+.actionButton::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    visibility: hidden;
+}
+
+.actionButton:hover::after {
+    visibility: visible;
+}
+
+button.statusButton.active {
     background: #28a745;
     color: white;
 }
 
-.statusButton:hover {
+button.statusButton.active:hover {
     background: #218838;
+    transform: scale(1.05);
+}
+
+button.statusButton.completed {
+    background: #dc3545;
+    color: white;
+    opacity: 0.8;
+}
+
+button.statusButton.completed:hover {
+    background: #bd2130;
     transform: scale(1.05);
 }
 
@@ -259,3 +303,5 @@ body {
     background: #bd2130;
     transform: scale(1.05);
 }
+
+

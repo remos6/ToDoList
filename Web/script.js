@@ -4,7 +4,6 @@ class ToDoListApp {
         this.getElements(); 
         this.addEvents(); 
         this.drawList(); 
-
     }
 
     getElements() {
@@ -23,6 +22,9 @@ class ToDoListApp {
 
     addEvents() {
         this.addTaskButton.addEventListener('click', () => this.addTask());
+        this.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.addTask();
+        });
         this.showListButton.addEventListener('click', () => this.showList());
         this.saveButton.addEventListener('click', () => this.saveToFile());
         this.loadButton.addEventListener('click', () => this.loadFromFile());
@@ -111,11 +113,11 @@ class ToDoListApp {
                 ${task.completed ? 'Выполнено' : 'Не выполнено'}
             </div>
             <div class="taskActions">
-                <button class="actionButton statusButton">
+                <button class="actionButton statusButton ${task.completed ? 'completed' : 'active'}" data-tooltip="${task.completed ? 'Дело не выполнено' : 'Дело выполнено'}">
                     ${task.completed ? '❌' : '✅'}
                 </button>
-                <button class="actionButton editButton">✏️</button>
-                <button class="actionButton deleteButton">🗑️</button>
+                <button class="actionButton editButton" data-tooltip="Редактировать дело">✏️</button>
+                <button class="actionButton deleteButton" data-tooltip="Удалить дело">🗑️</button>
             </div>
         </div>
         `).join('');
@@ -180,7 +182,6 @@ class ToDoListApp {
         event.target.value = '';
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     new ToDoListApp();
